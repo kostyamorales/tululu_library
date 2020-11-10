@@ -41,7 +41,7 @@ def main():
     if args.json_path:
         Path(args.json_path).mkdir(parents=True, exist_ok=True)
         chdir(args.json_path)
-    with open(f'books.json', 'a', encoding='utf8') as file:
+    with open(f'books.json', 'w', encoding='utf8') as file:
         json.dump(books, file, ensure_ascii=False)
 
 
