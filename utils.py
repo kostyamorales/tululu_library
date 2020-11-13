@@ -25,7 +25,7 @@ def get_books_url(start_page, end_page):
         soup = BeautifulSoup(page_html, 'lxml')
         books_card = soup.select('.d_book')
         for book_card in books_card:
-            book_url = urljoin('https://tululu.org', book_card.select_one('a').get('href'))
+            book_url = urljoin(page_url, book_card.select_one('a').get('href'))
             books_url.append(book_url)
     return books_url
 
