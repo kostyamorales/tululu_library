@@ -5,9 +5,9 @@ from os import path, getcwd
 from pathvalidate import sanitize_filename
 
 
-def download_image(img_url, folder='images/'):
+def download_image(book_url, img_url, folder='images/'):
     Path(folder).mkdir(parents=True, exist_ok=True)
-    url = urljoin('http://tululu.org', img_url)
+    url = urljoin(book_url, img_url)
     response = requests.get(url, verify=False)
     response.raise_for_status()
     filename = img_url.split('/')[-1]
