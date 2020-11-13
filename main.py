@@ -36,7 +36,7 @@ def main():
         if response.url != url:
             continue
         book_html = get_html(book_url)
-        book = get_book(book_html, response, args.skip_txt, args.skip_imgs)
+        book = get_book(book_url, book_html, response, args.skip_txt, args.skip_imgs)
         books.append(book)
     if args.json_path:
         Path(args.json_path).mkdir(parents=True, exist_ok=True)
