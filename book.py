@@ -1,4 +1,4 @@
-from utils import get_comments, get_genres
+from utils import get_genres
 from bs4 import BeautifulSoup
 from download_files import download_txt, download_image
 
@@ -7,8 +7,7 @@ def get_book_data(html):
     soup = BeautifulSoup(html, 'lxml')
     title, author = soup.select_one('h1').text.split(sep='::')
     img_url = soup.select_one('.bookimage img')['src']
-    texts_comments = soup.select('.texts')
-    comments = get_comments(texts_comments)
+    comments = [texts_comments.select_one('.black').text for texts_comments in soup.select('.texts')]
     genres = get_genres(soup)
     return title.strip(), author.strip(), comments, genres, img_url
 
