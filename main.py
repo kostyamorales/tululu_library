@@ -6,7 +6,7 @@ from pathlib import Path
 import json
 
 
-def arg_parse():
+def parse_arguments():
     parser = argparse.ArgumentParser(
         description='Программа скачивает коллекцию книг фантастического жанра'
     )
@@ -22,7 +22,7 @@ def arg_parse():
 
 
 def main():
-    args = arg_parse()
+    args = parse_arguments()
     start_page = args.start_page
     end_page = args.end_page
     books_url = get_books_url(start_page, end_page)
