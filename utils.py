@@ -41,10 +41,3 @@ def get_genres(soup):
     title_genre, genres = soup.select('.d_book')[1].text.split(sep=':')
     genres = genres.strip().replace('.', '').split(', ')
     return genres
-
-
-def get_comments(texts_comments):
-    comments = []
-    for comment in texts_comments:
-        comments.append(comment.select_one('.black').text)
-    return comments
