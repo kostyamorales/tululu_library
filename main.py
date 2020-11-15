@@ -1,5 +1,5 @@
 import argparse
-from utils import get_last_page, get_books_url, get_html, get_response_book
+from utils import get_last_page, get_books_url, get_html, get_book_response
 from book import get_book
 from os import chdir
 from pathlib import Path
@@ -31,8 +31,8 @@ def main():
         Path(args.dest_folder).mkdir(parents=True, exist_ok=True)
         chdir(args.dest_folder)
     for book_url in books_url:
-        num_book = book_url.split('b')[-1]
-        response, url = get_response_book(num_book)
+        book_num = book_url.split('b')[-1]
+        response, url = get_book_response(book_num)
         if response.url != url:
             continue
         book_html = get_html(book_url)
