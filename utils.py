@@ -38,6 +38,6 @@ def get_book_response(book_num):
 
 
 def get_genres(soup):
-    title_genre, genres = soup.select('.d_book')[1].text.split(sep=':')
-    genres = genres.strip().replace('.', '').split(', ')
+    title_genre, name_genres = soup.select('.d_book')[1].text.split(sep=':')
+    genres = name_genres.strip().replace('.', '').split(', ')
     return genres
