@@ -14,13 +14,14 @@ def get_book_data(html):
 
 def get_book(book_url, book_html, response, skip_txt, skip_imgs):
     title, author, comments, genres, img_url = get_book_data(book_html)
-    book = {'title': title,
-            'author': author,
-            'image_src': None,
-            'book_path': None,
-            'comments': comments,
-            'genres': genres,
-            }
+    book = {
+        'title': title,
+        'author': author,
+        'image_src': None,
+        'book_path': None,
+        'comments': comments,
+        'genres': genres
+    }
     if not skip_txt:
         book_path = download_txt(response, title)
         book['book_path'] = book_path
