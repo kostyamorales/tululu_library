@@ -30,8 +30,8 @@ def get_books_url(start_page, end_page):
     return books_url
 
 
-def get_response_book(num_book):
-    url = f'https://tululu.org/txt.php?id={num_book}'
+def get_book_response(book_num):
+    url = f'https://tululu.org/txt.php?id={book_num}'
     response = requests.get(url, verify=False)
     response.raise_for_status()
     return response, url
