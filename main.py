@@ -1,5 +1,5 @@
 import argparse
-from utils import get_last_page, get_books_url, get_html, get_book_response
+from utils import get_last_page, get_books_urls, get_html, get_book_response
 from book import get_book
 from os import chdir
 from pathlib import Path
@@ -26,12 +26,12 @@ def main():
     args = parse_arguments()
     start_page = args.start_page
     end_page = args.end_page
-    books_url = get_books_url(start_page, end_page)
+    books_urls = get_books_urls(start_page, end_page)
     books = []
     if args.dest_folder:
         Path(args.dest_folder).mkdir(parents=True, exist_ok=True)
         chdir(args.dest_folder)
-    for book_url in books_url:
+    for book_url in books_urls:
         try:
             book_num = book_url.split('b')[-1]
             response = get_book_response(book_num)

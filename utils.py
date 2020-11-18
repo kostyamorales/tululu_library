@@ -23,17 +23,17 @@ def get_last_page():
     return int(last_page)
 
 
-def get_books_url(start_page, end_page):
-    books_url = []
+def get_books_urls(start_page, end_page):
+    books_urls = []
     for page in range(start_page, end_page):
         page_url = f'https://tululu.org/l55/{page}'
         page_html = get_html(page_url)
         soup = BeautifulSoup(page_html, 'lxml')
-        books_card = soup.select('.d_book')
-        for book_card in books_card:
+        books_cards = soup.select('.d_book')
+        for book_card in books_cards:
             book_url = urljoin(page_url, book_card.select_one('a').get('href'))
-            books_url.append(book_url)
-    return books_url
+            books_urls.append(book_url)
+    return books_urls
 
 
 def get_book_response(book_num):
