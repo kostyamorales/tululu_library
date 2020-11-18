@@ -12,6 +12,7 @@ def download_image(book_url, img_url, folder='images/'):
     url = urljoin(book_url, img_url)
     response = requests.get(url, verify=False, allow_redirects=False)
     check_response(response)
+    response.raise_for_status()
     name = img_url.split('/')[-1]
     timestamp = int(time())
     filename = sanitize_filename(f'{timestamp}_{name}')

@@ -12,6 +12,7 @@ def check_response(response):
 def get_html(url):
     response = requests.get(url, verify=False, allow_redirects=False)
     check_response(response)
+    response.raise_for_status()
     return response.text
 
 
@@ -40,6 +41,7 @@ def get_book_response(book_num):
     url = f'https://tululu.org/txt.php?id={book_num}'
     response = requests.get(url, verify=False, allow_redirects=False)
     check_response(response)
+    response.raise_for_status()
     return response
 
 
