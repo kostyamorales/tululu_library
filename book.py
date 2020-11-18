@@ -1,4 +1,3 @@
-
 from utils import get_genres
 from bs4 import BeautifulSoup
 from download_files import download_txt, download_image

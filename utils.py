@@ -40,7 +40,7 @@ def get_book_response(book_num):
     url = f'https://tululu.org/txt.php?id={book_num}'
     response = requests.get(url, verify=False, allow_redirects=False)
     check_response(response)
-    return response, url
+    return response
 
 
 def get_genres(soup):

@@ -34,7 +34,7 @@ def main():
     for book_url in books_url:
         try:
             book_num = book_url.split('b')[-1]
-            response, url = get_book_response(book_num)
+            response = get_book_response(book_num)
             book_html = get_html(book_url)
             book = get_book(book_url, book_html, response, args.skip_txt, args.skip_imgs)
             books.append(book)
