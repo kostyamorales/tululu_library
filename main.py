@@ -4,6 +4,7 @@ from book import get_book
 from os import chdir
 from pathlib import Path
 import json
+import requests
 
 
 def parse_arguments():
@@ -31,13 +32,14 @@ def main():
         Path(args.dest_folder).mkdir(parents=True, exist_ok=True)
         chdir(args.dest_folder)
     for book_url in books_url:
-        book_num = book_url.split('b')[-1]
-        response, url = get_book_response(book_num)
-        if response.url != url:
-            continue
-        book_html = get_html(book_url)
-        book = get_book(book_url, book_html, response, args.skip_txt, args.skip_imgs)
-        books.append(book)
+        try:
+            book_num = book_url.split('b')[-1]
+            response, url = get_book_response(book_num)
+            book_html = get_html(book_url)
+            book = get_book(book_url, book_html, response, args.skip_txt, args.skip_imgs)
+            books.append(book)
+        except requests.HTTPError:
+            print('requests.HTTPError')
     if args.json_path:
         Path(args.json_path).mkdir(parents=True, exist_ok=True)
         chdir(args.json_path)

@@ -3,9 +3,15 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
 
+def check_response(response):
+    if response.is_redirect:
+        raise requests.HTTPError
+    return
+
+
 def get_html(url):
-    response = requests.get(url, verify=False)
-    response.raise_for_status()
+    response = requests.get(url, verify=False, allow_redirects=False)
+    check_response(response)
     return response.text
 
 
@@ -32,8 +38,8 @@ def get_books_url(start_page, end_page):
 
 def get_book_response(book_num):
     url = f'https://tululu.org/txt.php?id={book_num}'
-    response = requests.get(url, verify=False)
-    response.raise_for_status()
+    response = requests.get(url, verify=False, allow_redirects=False)
+    check_response(response)
     return response, url
 
 
