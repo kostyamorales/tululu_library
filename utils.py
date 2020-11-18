@@ -20,7 +20,7 @@ def get_last_page():
     url = 'https://tululu.org/l55/'
     html = get_html(url)
     soup = BeautifulSoup(html, 'lxml')
-    last_page = soup.select('.center .npage')[-1].text
+    last_page = soup.select_one('.center .npage:last-of-type').text
     return int(last_page)
 
 
@@ -46,6 +46,6 @@ def get_book_response(book_num):
 
 
 def get_genres(soup):
-    title_genre, name_genres = soup.select('.d_book')[1].text.split(sep=':')
-    genres = name_genres.strip().replace('.', '').split(', ')
+    genre_title, genres_name = soup.select('.d_book')[1].text.split(sep=':')
+    genres = genres_name.strip().replace('.', '').split(', ')
     return genres
