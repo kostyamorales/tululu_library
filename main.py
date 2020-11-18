@@ -5,6 +5,7 @@ from os import chdir
 from pathlib import Path
 import json
 import requests
+from time import sleep
 
 
 def parse_arguments():
@@ -39,7 +40,9 @@ def main():
             book = get_book(book_url, book_html, response, args.skip_txt, args.skip_imgs)
             books.append(book)
         except requests.HTTPError:
-            print('requests.HTTPError')
+            continue
+        except ConnectionError:
+            sleep(30)
     if args.json_path:
         Path(args.json_path).mkdir(parents=True, exist_ok=True)
         chdir(args.json_path)
