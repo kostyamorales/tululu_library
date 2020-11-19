@@ -1,5 +1,6 @@
+from __future__ import print_function
 import argparse
-from utils import get_last_page, get_books_urls, get_html, get_book_response
+from utils import get_last_page, get_books_urls, get_html, get_book_response, eprint
 from book import get_book
 from os import chdir
 from pathlib import Path
@@ -50,10 +51,12 @@ def main():
         except ConnectionError as error:
             if attempt > 3:
                 logger.info(error)
+                eprint('Max reconnection attempts exceeded')
                 sys.exit()
             logger.info(error)
-            sleep(30)
+            eprint(f'Attempt to reconnect {attempt}/3 after 30 seconds')
             attempt += 1
+            sleep(30)
     if args.json_path:
         Path(args.json_path).mkdir(parents=True, exist_ok=True)
         chdir(args.json_path)

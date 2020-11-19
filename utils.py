@@ -1,6 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
+from sys import stderr
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=stderr, **kwargs)
 
 
 def check_response(response):
