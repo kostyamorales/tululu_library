@@ -24,7 +24,7 @@ def download_image(book_url, img_url, folder='images/'):
 
 def download_txt(response, title, folder='books/'):
     Path(folder).mkdir(parents=True, exist_ok=True)
-    title = title[:130]  # Чтобы ограничить кол-во символов в названии файла и предотвратить OSError.
+    title = title[:120]  # Чтобы ограничить кол-во символов в названии файла и предотвратить OSError.
     timestamp = int(time())
     filename = sanitize_filename(f'{timestamp}_{title}.txt')
     filepath = path.join(getcwd(), folder, filename)
