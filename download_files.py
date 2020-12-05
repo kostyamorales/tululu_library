@@ -1,7 +1,6 @@
 from pathlib import Path
 from urllib.parse import urljoin
 import requests
-from os import getcwd
 from pathvalidate import sanitize_filename
 from utils import check_response
 from time import time
@@ -16,7 +15,7 @@ def download_image(book_url, img_url, folder='images/'):
     name = img_url.split('/')[-1]
     timestamp = int(time())
     filename = sanitize_filename(f'{timestamp}_{name}')
-    filepath = str(Path(getcwd(), folder, filename))
+    filepath = str(Path(folder, filename))
     with open(filepath, 'wb') as file:
         file.write(response.content)
     return filepath
@@ -27,7 +26,7 @@ def download_txt(response, title, folder='books/'):
     title = title[:120]  # Чтобы ограничить кол-во символов в названии файла и предотвратить OSError.
     timestamp = int(time())
     filename = sanitize_filename(f'{timestamp}_{title}.txt')
-    filepath = str(Path(getcwd(), folder, filename))
+    filepath = str(Path(folder, filename))
     with open(filepath, 'wb') as file:
         file.write(response.content)
     return filepath
