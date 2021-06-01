@@ -1,4 +1,4 @@
-# tululu_library_loader
+# tululu_library_parser
 
 ## Загрузчик книг жанра [научная фантастика](https://tululu.org/l55/) с сайта [tululu.org](https://tululu.org/).
 
